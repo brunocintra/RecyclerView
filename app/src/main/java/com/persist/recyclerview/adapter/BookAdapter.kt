@@ -16,25 +16,22 @@ class BookAdapter (nameList: List<String>, internal var ctx: Context): RecyclerV
         this.nameList = nameList
     }
 
-    // Aqui é onde o viewholder é criado a partir do layout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.activity_main_list_item, parent, false)
         return ViewHolder(view)
     }
 
-    // Nessa parte é onde se modifica o item do viewholder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val title = nameList[position]
 
         holder.itemView.txtTitle.text = title
     }
 
-    // Devolve quantidade de itens do nameList
     override fun getItemCount(): Int {
         return nameList.size
     }
 
-    // Aqui é a criação dos itens do viewholder
+
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         var title = view.txtTitle
     }
