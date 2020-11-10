@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Book(
+    var id: Int,
     val title: String,
     val subtitle: String,
-    var favorite: Int): Parcelable
+    val favorite: Int): Parcelable

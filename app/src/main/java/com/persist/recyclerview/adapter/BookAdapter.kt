@@ -12,7 +12,9 @@ import com.persist.recyclerview.R
 import com.persist.recyclerview.domain.Book
 import kotlinx.android.synthetic.main.activity_main_list_item.view.*
 
-class BookAdapter (books: List<Book>, internal var ctx: Context): RecyclerView.Adapter<BookAdapter.ViewHolder>() {
+class BookAdapter (books: List<Book>,
+                   internal var ctx: Context,
+                   private val callback: (Book) -> Unit): RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     internal var bookList: List<Book> = ArrayList<Book>()
     init { this.bookList = books  }
@@ -21,8 +23,15 @@ class BookAdapter (books: List<Book>, internal var ctx: Context): RecyclerView.A
         ctx.resources.obtainTypedArray(R.array.favorite)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(ctx).inflate(R.layout.activity_main_list_item, parent, false)
-        return ViewHolder(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_main_list_item, parent, false)
+        val viewHolder = ViewHolder(view)
+
+        viewHolder.itemView.setOnClickListener {
+            val food = bookList[viewHolder.adapterPosition]
+            callback(food)
+        }
+
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
