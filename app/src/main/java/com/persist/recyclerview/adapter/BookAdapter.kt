@@ -27,8 +27,8 @@ class BookAdapter (books: List<Book>,
         val viewHolder = ViewHolder(view)
 
         viewHolder.itemView.setOnClickListener {
-            val food = bookList[viewHolder.adapterPosition]
-            callback(food)
+            val book = bookList[viewHolder.adapterPosition]
+            callback(book)
         }
 
         return viewHolder

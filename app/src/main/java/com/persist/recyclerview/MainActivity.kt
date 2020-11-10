@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         const val BOOK_ACTIVITY_EDT_BOOK = 3
 
         const val BOOK_ACTIVITY_OBJECT_BOOK = "book_object"
+        const val BOOK_ACTIVITY_LIST_BOOK = "book_list"
     }
 
     var bookAdapter: BookAdapter? = null
@@ -40,6 +42,18 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intentBook, BOOK_ACTIVITY_ADD_BOOK)
         }
         initList()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState.putParcelableArrayList(BOOK_ACTIVITY_LIST_BOOK, java.util.ArrayList<Book>(bookList))
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        var list = savedInstanceState.getParcelableArrayList<Book>(BOOK_ACTIVITY_LIST_BOOK)!!
+        bookList.addAll(list)
+        bookAdapter?.notifyDataSetChanged()
     }
 
     private fun initList(){

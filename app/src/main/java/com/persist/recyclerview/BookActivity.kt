@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import com.persist.recyclerview.domain.Book
 import kotlinx.android.synthetic.main.activity_book.*
 

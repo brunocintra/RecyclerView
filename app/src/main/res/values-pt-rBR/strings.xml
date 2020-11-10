@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lista de Livros</string>
+    <string name="btn_confirmar">Confirmar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="edit_book_sucess">Livro editado com sucesso!</string>
+    <string name="add_book_success">Livro adicionado com sucesso!</string>
+</resources>
